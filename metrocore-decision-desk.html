@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MetroCore Decision Desk | CARE Conference 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky site nav, indigo hero with city-grid motif, then light content sections on a 1080px column. */
+:root{
+  --indigo-900:#14123a;
+  --indigo-800:#1e1b4b;
+  --indigo-700:#2d2a6e;
+  --indigo-500:#5b57c9;
+  --indigo-100:#e8e7f8;
+  --indigo-50:#f4f4fc;
+  --gold:#d4a62a;
+  --gold-soft:#f3e3b0;
+  --ink:#1b1a33;
+  --muted:#5a5878;
+  --line:#dcdbef;
+  --good:#1f7a4d;
+  --bad:#b3372f;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;font-family:var(--body);font-size:17px;line-height:1.6;color:var(--ink);background:#fff}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0 0 1em}
+a{color:var(--indigo-500)}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:var(--indigo-900);border-bottom:1px solid #ffffff1a}
+.nav .wrap{display:flex;align-items:center;gap:20px;min-height:56px;flex-wrap:wrap;padding-block:6px}
+.brand{font-family:var(--display);font-weight:800;color:#fff;text-decoration:none;letter-spacing:.02em}
+.brand span{color:var(--gold)}
+.nav ul{display:flex;gap:4px 18px;list-style:none;margin:0 0 0 auto;padding:0;flex-wrap:wrap}
+.nav a.l{color:#c9c8ec;text-decoration:none;font-size:.92rem;padding:4px 0}
+.nav a.l:hover,.nav a.l[aria-current]{color:var(--gold)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* hero */
+.hero{position:relative;background:var(--indigo-800);color:#fff;overflow:hidden;padding-block:72px 64px}
+.hero svg.bg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:800;margin:14px 0 18px;max-width:14ch}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{font-size:1.2rem;max-width:56ch;color:#d9d8f3}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{border:1px solid #ffffff40;border-radius:999px;padding:6px 14px;font-size:.9rem;color:#fff;background:#ffffff10}
+.chip b{color:var(--gold);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;margin-top:44px;border-top:1px solid #ffffff30}
+.stats div{padding:18px 16px 0 0}
+.stats strong{display:block;font-family:var(--display);font-size:2.1rem;color:var(--gold);line-height:1}
+.stats span{font-size:.9rem;color:#c9c8ec}
+
+/* sections */
+section{padding-block:64px}
+section.alt{background:var(--indigo-50)}
+.sec-head{margin-bottom:30px;max-width:62ch}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--indigo-800);margin-top:6px}
+.sec-head .eyebrow{color:#9a7810}
+.mission{border-left:5px solid var(--gold);background:var(--indigo-50);padding:18px 22px;font-size:1.12rem;margin:22px 0 0}
+.mission b{color:var(--indigo-800)}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:8px}
+.step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;position:relative}
+.step small{font-family:var(--mono);color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em}
+.step strong{display:block;font-family:var(--display);color:var(--indigo-800);margin:4px 0 2px}
+.step p{font-size:.92rem;color:var(--muted);margin:0}
+.step.end{background:var(--indigo-800);border-color:var(--indigo-800)}
+.step.end strong{color:var(--gold)}.step.end small,.step.end p{color:#c9c8ec}
+
+/* messy list */
+.mess{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.mess li{display:flex;gap:14px;align-items:flex-start}
+.mess svg{flex:none;margin-top:3px}
+
+/* problem types */
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+.type{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.type .fig{background:var(--indigo-800);padding:14px;display:flex;justify-content:center}
+.type .fig svg{width:100%;max-width:300px;height:auto}
+.type .body{padding:18px 20px 22px;min-width:0}
+.type h3{font-size:1.2rem;color:var(--indigo-800);margin:2px 0 8px}
+.type .tag{font-family:var(--mono);font-size:.74rem;color:#9a7810;letter-spacing:.1em;text-transform:uppercase}
+.type blockquote{margin:0 0 10px;font-style:italic;color:var(--ink)}
+.type p.note{font-size:.93rem;color:var(--muted);margin:0}
+
+/* departments */
+.depts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.depts li{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-weight:600;color:var(--indigo-800);font-size:.97rem;line-height:1.3}
+.depts li i{flex:none;width:28px;height:28px;border-radius:6px;background:var(--indigo-800);color:var(--gold);font-style:normal;font-family:var(--mono);font-size:.78rem;display:grid;place-items:center}
+.scale{display:flex;align-items:center;gap:14px;margin-top:26px;font-size:.95rem;color:var(--muted)}
+.scale .bar{flex:1;max-width:420px;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--indigo-100),var(--indigo-500))}
+
+/* code */
+pre{margin:0;background:var(--indigo-900);color:#e8e7f8;border-radius:10px;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:.92rem;line-height:1.7}
+pre .h{color:var(--gold)}pre .na{color:#ff9d94}
+.answer-box{display:grid;gap:16px}
+.answer-box .kinds{display:grid;gap:10px}
+.kind{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px}
+.kind code{font-family:var(--mono);background:var(--gold-soft);color:var(--indigo-900);padding:2px 8px;border-radius:5px;font-weight:600;white-space:nowrap}
+
+/* scoring */
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+@media (max-width:900px){.score-grid{grid-template-columns:1fr}}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.97rem}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--indigo-50)}
+td.s{font-family:var(--mono);font-weight:700;white-space:nowrap;text-align:right}
+td.s.p{color:var(--good)}td.s.n{color:var(--bad)}td.s.z{color:var(--muted)}
+.formula{margin-top:18px;font-family:var(--mono);font-size:.95rem;background:var(--gold-soft);padding:12px 16px;border-radius:8px;color:var(--indigo-900);overflow-x:auto}
+.chart{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+.chart h3{font-size:1.05rem;color:var(--indigo-800);margin-bottom:4px}
+.chart p{font-size:.9rem;color:var(--muted);margin-bottom:10px}
+.chart svg{width:100%;height:auto;display:block}
+
+/* limits */
+.limits{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+.limit{background:var(--indigo-800);color:#fff;border-radius:12px;padding:20px}
+.limit strong{display:block;font-family:var(--display);font-size:2rem;color:var(--gold);line-height:1.1}
+.limit span{font-size:.92rem;color:#c9c8ec}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.fact{border:1px solid var(--line);border-radius:10px;padding:18px 20px;background:#fff}
+.fact h3{font-size:1.05rem;color:var(--indigo-800);margin-bottom:6px}
+.fact p{margin:0;font-size:.97rem;color:var(--muted)}
+
+/* rules + report */
+.rules{counter-reset:r;list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.rules li{counter-increment:r;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.rules li::before{content:counter(r);width:44px;height:44px;border-radius:50%;background:var(--indigo-800);color:var(--gold);font-family:var(--display);font-weight:800;display:grid;place-items:center}
+.rules h3{font-size:1.05rem;color:var(--indigo-800)}
+.rules p{margin:2px 0 0;color:var(--muted);font-size:.97rem}
+.report{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.rep{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:8px;padding:18px}
+.rep h3{font-size:1.05rem;color:var(--indigo-800);margin-bottom:6px}
+.rep p{margin:0;font-size:.95rem;color:var(--muted)}
+.callout{margin-top:24px;background:var(--indigo-800);color:#fff;border-radius:12px;padding:20px 24px;display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+.callout b{color:var(--gold)}
+
+footer{background:var(--indigo-900);color:#aeadd6;padding-block:32px;font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer b{color:#fff}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- Replace this nav with the shared header used on the other CARE 2026 pages -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">CARE <span>2026</span></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a class="l" href="index.html">Home</a></li>
+        <li><a class="l" href="program.html">Program</a></li>
+        <li><a class="l" href="speakers.html">Speakers</a></li>
+        <li><a class="l" href="committee.html">Committee</a></li>
+        <li><a class="l" href="forum.html">Forum</a></li>
+        <li><a class="l" href="venue.html">Venue</a></li>
+        <li><a class="l" href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<div class="hero">
+  <svg class="bg" aria-hidden="true" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#5b57c9" stroke-width="1" fill="none" opacity=".55">
+      <path d="M0 80H1200M0 170H1200M0 260H1200M0 350H1200"/>
+      <path d="M120 0V420M300 0V420M480 0V420M660 0V420M840 0V420M1020 0V420"/>
+    </g>
+    <g stroke="#d4a62a" stroke-width="2.5" fill="none" opacity=".8">
+      <path d="M660 80H840V260H1020V350"/>
+      <path d="M300 170H480V350"/>
+    </g>
+    <g fill="#d4a62a">
+      <circle cx="660" cy="80" r="6"/><circle cx="840" cy="80" r="6"/><circle cx="840" cy="260" r="6"/><circle cx="1020" cy="260" r="6"/><circle cx="1020" cy="350" r="6"/>
+      <circle cx="300" cy="170" r="6"/><circle cx="480" cy="170" r="6"/><circle cx="480" cy="350" r="6"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">CARE 2026 &nbsp;/&nbsp; Data Challenge</div>
+    <h1>MetroCore <em>Decision Desk</em></h1>
+    <p class="lead">Build a system that reads a city department's memo, with attached images, and returns the mathematically optimal answer.</p>
+    <div class="chips">
+      <span class="chip"><b>Input</b> text + images</span>
+      <span class="chip"><b>Output</b> one number, or <b>na</b></span>
+      <span class="chip"><b>Models</b> open weights, up to 7B</span>
+      <span class="chip"><b>Network</b> none</span>
+    </div>
+    <div class="stats">
+      <!-- <div><strong>4.2M</strong><span>residents in MetroCore</span></div> -->
+      <!-- <div><strong>60+</strong><span>problem families</span></div> -->
+    </div>  
+  </div>
+</div>
+
+<!-- 1. CHALLENGE -->
+<section id="challenge">
+  <div class="wrap">
+    <div class="two">
+      <div>
+        <div class="sec-head">
+          <div class="eyebrow">The challenge</div>
+          <h2>Optimization problems, described in plain language</h2>
+        </div>
+        <p>MetroCore is a metropolitan area of 4.2 million people. Its various city departments face operational decision problems every day: scheduling shifts, routing vehicles, allocating budgets, planning infrastructure. You will receive optimization problems written the way real people write, as word problems, memos, and policy excerpts.</p>
+        <p class="mission"><b>Your mission:</b> build a system that takes a problem description (text and, optionally, images) and returns the mathematically optimal answer.</p>
+      </div>
+      <!-- pipeline mini diagram -->
+      <svg viewBox="0 0 360 300" role="img" aria-label="A memo and an image go into a system, which returns one number" style="width:100%;height:auto">
+        <rect x="8" y="10" width="150" height="86" rx="8" fill="#f4f4fc" stroke="#dcdbef"/>
+        <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10" fill="#5a5878" letter-spacing="1.2">MEMO (TEXT)</text>
+        <g stroke="#9a98c8" stroke-width="3" stroke-linecap="round"><path d="M20 46H140M20 58H128M20 70H136M20 82H100"/></g>
+        <rect x="202" y="10" width="150" height="86" rx="8" fill="#f4f4fc" stroke="#dcdbef"/>
+        <text x="214" y="32" font-family="JetBrains Mono, monospace" font-size="10" fill="#5a5878" letter-spacing="1.2">IMAGE (DATA)</text>
+        <g fill="#2d2a6e"><rect x="216" y="70" width="14" height="14"/><rect x="236" y="56" width="14" height="28"/><rect x="256" y="62" width="14" height="22"/><rect x="276" y="46" width="14" height="38"/><rect x="296" y="60" width="14" height="24"/><rect x="316" y="68" width="14" height="16"/></g>
+        <path d="M83 100V140M277 100V140M83 140H180M277 140H180M180 140V162" stroke="#5b57c9" stroke-width="2" fill="none"/>
+        <path d="M174 156l6 8 6-8" fill="#5b57c9"/>
+        <rect x="70" y="168" width="220" height="56" rx="10" fill="#1e1b4b"/>
+        <text x="180" y="194" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="15" fill="#fff">Your system</text>
+        <text x="180" y="212" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#d4a62a">read · formulate · solve</text>
+        <path d="M180 224V250" stroke="#5b57c9" stroke-width="2"/><path d="M174 244l6 8 6-8" fill="#5b57c9"/>
+        <rect x="100" y="258" width="160" height="34" rx="17" fill="#d4a62a"/>
+        <text x="180" y="280" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="600" font-size="14" fill="#14123a">2450.75</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 2. INPUT -->
+<section id="input" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">What your system receives</div>
+      <h2>A word problem in a department head's voice, plus images that carry the data</h2>
+    </div>
+    <p style="max-width:70ch">Each problem consists of text and, optionally, one or more images. Images, when present, carry data that is essential to solving the problem: tables, charts, maps, or scanned documents. All numerical data, constraints, and objectives are spread across the text and images together.</p>
+
+    <h3 style="margin:30px 0 14px;font-size:1.25rem;color:var(--indigo-800)">Expect city-staff writing</h3>
+    <ul class="mess">
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#e8e7f8"/><path d="M6 11h10" stroke="#2d2a6e" stroke-width="2"/></svg><span>Figures that do not matter, mixed in with ones that do.</span></li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#e8e7f8"/><path d="M6 8h10M6 14h10" stroke="#2d2a6e" stroke-width="2"/></svg><span>Mixed units and conventions: tons and kg, weekly and monthly, lakh and crore.</span></li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#e8e7f8"/><path d="M7 11l3 3 5-6" stroke="#2d2a6e" stroke-width="2" fill="none"/></svg><span>Rules any competent analyst would assume without writing them down, such as "a nurse cannot work two wards at once".</span></li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#e8e7f8"/><rect x="6" y="6" width="10" height="10" rx="1.5" fill="none" stroke="#2d2a6e" stroke-width="2"/></svg><span>Key data supplied only inside an attached image, not repeated in the text.</span></li>
+    </ul>
+
+    <h3 style="margin:44px 0 16px;font-size:1.25rem;color:var(--indigo-800)">Example problem types</h3>
+    <div class="types">
+
+      <article class="type">
+        <div class="fig">
+          <svg viewBox="0 0 300 150" role="img" aria-label="A distance table with one highlighted cell">
+            <rect x="10" y="10" width="280" height="130" rx="6" fill="#2d2a6e"/>
+            <g stroke="#5b57c9" stroke-width="1"><path d="M10 40H290M10 70H290M10 100H290M70 10V140M130 10V140M190 10V140M240 10V140"/></g>
+            <g font-family="JetBrains Mono, monospace" font-size="11" fill="#e8e7f8" text-anchor="middle">
+              <text x="100" y="30" fill="#d4a62a">R1</text><text x="160" y="30" fill="#d4a62a">R2</text><text x="215" y="30" fill="#d4a62a">R3</text><text x="265" y="30" fill="#d4a62a">R4</text>
+              <text x="40" y="60" fill="#d4a62a">Depot A</text><text x="40" y="90" fill="#d4a62a">Depot B</text><text x="40" y="120" fill="#d4a62a">Depot C</text>
+              <text x="100" y="60">12.4</text><text x="160" y="60">8.1</text><text x="215" y="60">15.0</text><text x="265" y="60">9.7</text>
+              <text x="100" y="90">7.9</text><text x="160" y="90">11.3</text><text x="215" y="90">6.2</text><text x="265" y="90">13.8</text>
+              <text x="100" y="120">10.5</text><text x="160" y="120">9.0</text><text x="215" y="120">14.4</text><text x="265" y="120">5.6</text>
+            </g>
+            <rect x="130.5" y="41" width="59" height="28" fill="none" stroke="#d4a62a" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="tag">Type A · image holds a table</div>
+          <h3>Transit and logistics</h3>
+          <blockquote>"Assign buses to the six new routes starting Monday. Minimize total deadhead kilometres. The distance matrix is attached."</blockquote>
+          <p class="note">A photographed table of pairwise distances between depots and route start-points.</p>
+        </div>
+      </article>
+
+      <article class="type">
+        <div class="fig">
+          <svg viewBox="0 0 300 150" role="img" aria-label="Bar chart of hourly demand with a capacity line">
+            <rect x="10" y="10" width="280" height="130" rx="6" fill="#2d2a6e"/>
+            <g stroke="#5b57c9" stroke-width="1"><path d="M30 40H280M30 70H280M30 100H280"/></g>
+            <g fill="#8f8be0">
+              <rect x="38" y="92" width="18" height="38"/><rect x="64" y="86" width="18" height="44"/><rect x="90" y="72" width="18" height="58"/><rect x="116" y="56" width="18" height="74"/>
+              <rect x="142" y="42" width="18" height="88"/><rect x="168" y="48" width="18" height="82"/><rect x="194" y="38" width="18" height="92"/><rect x="220" y="60" width="18" height="70"/><rect x="246" y="82" width="18" height="48"/>
+            </g>
+            <path d="M30 56H280" stroke="#d4a62a" stroke-width="2" stroke-dasharray="6 4"/>
+            <text x="34" y="50" font-family="JetBrains Mono, monospace" font-size="9" fill="#d4a62a">capacity</text>
+            <path d="M30 130H280" stroke="#e8e7f8" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="tag">Type B · image holds a chart</div>
+          <h3>Energy grid management</h3>
+          <blockquote>"Attached is the hourly demand forecast for next week. Schedule our three generators to meet demand at minimum fuel cost."</blockquote>
+          <p class="note">Demand is a bar chart in the image. Generator capacities and per-MWh costs are in the text.</p>
+        </div>
+      </article>
+
+      <article class="type">
+        <div class="fig">
+          <svg viewBox="0 0 300 150" role="img" aria-label="River network map with candidate sensor stations">
+            <rect x="10" y="10" width="280" height="130" rx="6" fill="#2d2a6e"/>
+            <g stroke="#6fa8ff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".85">
+              <path d="M30 40C80 40 90 75 130 75S190 40 240 45"/><path d="M130 75C140 100 120 115 150 128"/><path d="M190 52C210 80 240 85 270 108"/>
+            </g>
+            <g fill="#fff" stroke="#14123a" stroke-width="2"><circle cx="60" cy="48" r="7"/><circle cx="130" cy="75" r="7"/><circle cx="190" cy="52" r="7"/><circle cx="240" cy="45" r="7"/><circle cx="145" cy="118" r="7"/><circle cx="240" cy="90" r="7"/></g>
+            <g fill="#d4a62a" stroke="#14123a" stroke-width="2"><circle cx="130" cy="75" r="7"/><circle cx="240" cy="90" r="7"/></g>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="tag">Type C · image holds a map</div>
+          <h3>Parks, environment, public services</h3>
+          <blockquote>"The map shows eight candidate locations and the river segments each covers. Place the fewest stations so every segment is monitored."</blockquote>
+          <p class="note">The river network and candidate sites exist only in the attached image.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 3. OUTPUT -->
+<section id="output">
+  <div class="wrap">
+    <div class="two">
+      <div>
+        <div class="sec-head">
+          <div class="eyebrow">What your system returns</div>
+          <h2>One value per problem</h2>
+        </div>
+        <div class="answer-box">
+          <div class="kinds">
+            <div class="kind"><code>number</code><span>The optimal objective value, at full floating-point precision.</span></div>
+            <div class="kind"><code>na</code><span>No feasible solution exists, because the constraints contradict each other.</span></div>
+          </div>
+          <p>The expected output is the optimal objective value only. No variable assignments, explanations, or intermediate work are required.</p>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow" style="color:#9a7810;margin-bottom:8px">submission.csv</div>
+<pre><span class="h">problem_id,answer</span>
+MC-001,2450.75
+MC-002,18900.0
+MC-003,<span class="na">na</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SCOPE -->
+<section id="scope" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Scope and scale</div>
+      <h2>A broad range of optimization domains, more than 60 problem families</h2>
+    </div>
+    <p style="max-width:70ch">Problems cover logistics, scheduling, resource allocation, infrastructure planning, financial optimization, and more. Each problem is a self-contained optimization task described in natural language.</p>
+    <div class="scale" aria-label="Problem size ranges from fewer than ten decisions to several hundred">
+      <span>&lt; 10 decisions</span><div class="bar"></div><span>several hundred</span>
+    </div>
+    <p style="margin-top:14px;color:var(--muted)">Some problems set one goal. Some spread decisions over several periods.</p>
+  </div>
+</section>
+
+<!-- 5. SCORING -->
+<section id="scoring">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Scoring</div>
+      <h2>Be right, or say <span style="font-family:var(--mono)">na</span> when it is infeasible</h2>
+    </div>
+    <div class="score-grid">
+      <div>
+        <p>Let <b>A</b> be your answer and <b>A*</b> the reference optimal value.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Your answer</th><th style="text-align:right">Score</th></tr></thead>
+            <tbody>
+              <tr><td>Correct: |A − A*| / max(1, |A*|) ≤ 0.01</td><td class="s p">+1</td></tr>
+              <tr><td>Close: within 5% of A*</td><td class="s p">+0.5</td></tr>
+              <tr><td>Wrong number (feasible problem, off by more than 5%)</td><td class="s z">0</td></tr>
+              <tr><td>Wrong number on an infeasible problem (should be <code>na</code>)</td><td class="s n">−0.5</td></tr>
+              <tr><td><code>na</code> on a feasible problem</td><td class="s n">−0.5</td></tr>
+              <tr><td>Correct <code>na</code> on an infeasible problem</td><td class="s p">+1</td></tr>
+              <tr><td>Missing answer or crash</td><td class="s z">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="formula">Final score = mean of per-problem scores across the evaluation set</div>
+      </div>
+
+      <figure class="chart" style="margin:0">
+        <h3>Score per outcome</h3>
+        <p>Guessing <code>na</code> on a feasible problem costs as much as inventing a number for an infeasible one.</p>
+        <svg viewBox="0 0 440 290" role="img" aria-label="Horizontal bar chart of scores per outcome, from minus 0.5 to plus 1">
+          <!-- scale: x0 at 260, 1 unit = 160px -->
+          <g stroke="#dcdbef" stroke-width="1"><path d="M180 12V250M260 12V250M340 12V250M420 12V250"/></g>
+          <path d="M260 12V250" stroke="#5a5878" stroke-width="1.5"/>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#5a5878" text-anchor="middle">
+            <text x="180" y="270">−0.5</text><text x="260" y="270">0</text><text x="340" y="270">+0.5</text><text x="420" y="270">+1</text>
+          </g>
+          <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#1b1a33">
+            <text x="6" y="36">Within 1%</text>
+            <text x="6" y="69">Correct na</text>
+            <text x="6" y="102">Within 5%</text>
+            <text x="6" y="135">Off by &gt; 5%</text>
+            <text x="6" y="168">Missing or crash</text>
+            <text x="6" y="201">na when feasible</text>
+            <text x="6" y="234">Number when infeasible</text>
+          </g>
+          <g>
+            <rect x="260" y="22" width="160" height="20" fill="#1f7a4d"/>
+            <rect x="260" y="55" width="160" height="20" fill="#1f7a4d"/>
+            <rect x="260" y="88" width="80" height="20" fill="#1f7a4d"/>
+            <rect x="259" y="121" width="2" height="20" fill="#5a5878"/>
+            <rect x="259" y="154" width="2" height="20" fill="#5a5878"/>
+            <rect x="180" y="187" width="80" height="20" fill="#b3372f"/>
+            <rect x="180" y="220" width="80" height="20" fill="#b3372f"/>
+          </g>
+        </svg>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 6. RUNTIME -->
+<section id="runtime" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Runtime and environment</div>
+      <h2>Your notebook reads problems and writes submission.csv</h2>
+    </div>
+    <div class="limits">
+      <div class="limit"><strong>None</strong><span>Network access</span></div>
+      <div class="limit"><strong>≤ 7B</strong><span>Parameters per open-weight model</span></div>
+    </div>
+    <div class="facts">
+      <div class="fact"><h3>Crashes</h3><p>Problems answered before a crash keep their scores. Unanswered problems score 0.</p></div>
+      <div class="fact"><h3>Models</h3><p>Open-weight models of up to 7B parameters. Multiple models may run in sequence. Quantization and fine-tuning are permitted on any data participants have the right to use.</p></div>
+      <div class="fact"><h3>Libraries</h3><p><code>ENVIRONMENT.md</code> lists every preinstalled package, and all teams receive the same environment. Additional open-source packages may be bundled. Commercial software and anything requiring a license server are prohibited.</p></div>
+      <div class="fact"><h3>Output</h3><p>Your notebook writes <code>submission.csv</code> with two columns: <code>problem_id</code> and <code>answer</code>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. RULES -->
+<section id="rules">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Rules</div>
+      <h2>Keep it offline, general, and reproducible</h2>
+    </div>
+    <ol class="rules">
+      <li><div><h3>No internet</h3><p>No calls to any external model or service.</p></div></li>
+      <li><div><h3>No hardcoding</h3><p>The pipeline must work on problems it has never seen. Top-scoring teams may be rerun on a renumbered, paraphrased copy of the Dev set. A significant score drop faces review and possible disqualification.</p></div></li>
+      <li><div><h3>No tampering</h3><p>Do not attack the harness or attempt to read hidden data. Violations lead to disqualification.</p></div></li>
+      <li><div><h3>Reproduction</h3><p>Prize winners hand over their code and reproduce their score on organizer hardware. Failure to reproduce forfeits the prize to the next-ranked team.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 8. REPORT -->
+<section id="report" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Technical report</div>
+      <h2>At most 2,500 words, excluding references and appendices</h2>
+    </div>
+    <div class="report">
+      <div class="rep"><h3>Architecture overview</h3><p>A clear system diagram and end-to-end description of the pipeline, from raw text and images to the final number. Describe every major component and how they interact.</p></div>
+      <div class="rep"><h3>Novelty statement</h3><p>What is new or non-obvious: a prompting strategy, a formulation-extraction step, an unconventional solver integration, a specialized vision pipeline, or anything that separates you from a naïve baseline.</p></div>
+      <div class="rep"><h3>Model details</h3><p>For every model: name and size, quantization scheme, fine-tuning data and procedure, and its role in the pipeline. If models are composed, explain the routing or sequencing logic.</p></div>
+      <div class="rep"><h3>Image-understanding pipeline</h3><p>How tables, charts, and maps become structured data: preprocessing, extraction, and any verification steps.</p></div>
+    </div>
+    <div class="callout">
+      <span>The jury rewards <b>depth of insight, reproducibility, and clarity</b> over polish.</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b>CARE Conference 2026</b> · Advances in Foundational and Applied Artificial Intelligence</span>
+    <span>Mehta Family School of Data Science and Artificial Intelligence, IIT Roorkee</span>
+  </div>
+</footer>
+</body>
+</html>
