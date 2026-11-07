@@ -1,0 +1,3 @@
+# Preserve generated artifact bytes: organizer manifests contain SHA-256 hashes.
+datasets/** -text
+releases/** -text

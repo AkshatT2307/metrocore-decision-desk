@@ -153,7 +153,210 @@ td.s.p{color:var(--good)}td.s.n{color:var(--bad)}td.s.z{color:var(--muted)}
 footer{background:var(--indigo-900);color:#aeadd6;padding-block:32px;font-size:.92rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
 footer b{color:#fff}
+/* Kaggle buttons & Poster Component */
+.nav-kaggle{background:#20beff;color:#14123a!important;font-weight:700;font-family:var(--mono);padding:4px 12px;border-radius:99px;font-size:0.84rem!important;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease;text-decoration:none}
+.nav-kaggle:hover{background:#fff;color:#14123a!important;transform:translateY(-1px);box-shadow:0 4px 12px rgba(32,190,255,0.4)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:24px}
+.btn-kaggle{display:inline-flex;align-items:center;gap:8px;background:#20beff;color:#14123a;font-family:var(--mono);font-size:0.92rem;font-weight:700;padding:10px 20px;border-radius:99px;text-decoration:none;transition:all .2s ease;box-shadow:0 4px 15px rgba(32,190,255,0.35)}
+.btn-kaggle:hover{background:#fff;transform:translateY(-2px);color:#14123a}
+.btn-poster{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.3);font-family:var(--mono);font-size:0.92rem;font-weight:600;padding:10px 18px;border-radius:99px;text-decoration:none;transition:all .2s ease}
+.btn-poster:hover{background:rgba(255,255,255,0.2);border-color:#fff}
+
+/* OFFICIAL POSTER SECTION */
+.poster-section{background:var(--indigo-900);color:#fff;padding-block:64px;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)}
+.poster-board{background:var(--indigo-800);border:2px solid var(--gold);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.5);display:flex;flex-direction:column}
+.pb-header{position:relative;padding:32px 36px 28px;background:linear-gradient(135deg,var(--indigo-900) 0%,var(--indigo-800) 100%);border-bottom:2px solid rgba(212,166,42,0.4);overflow:hidden}
+.pb-header svg.bg{position:absolute;inset:0;width:100%;height:100%;opacity:.45;pointer-events:none}
+.pb-topbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.15)}
+.pb-inst{font-family:var(--mono);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:#c9c8ec}
+.pb-inst strong{color:#fff;display:block}
+.pb-inst-link{color:inherit;text-decoration:none;display:block;transition:opacity .15s ease}
+.pb-inst-link:hover{opacity:.85}
+.pb-badges{display:flex;gap:8px;align-items:center}
+a.badge-kaggle{background:#20beff;color:#14123a!important;font-family:var(--mono);font-size:0.72rem;font-weight:800;padding:4px 12px;border-radius:99px;letter-spacing:0.08em;display:inline-flex;align-items:center;gap:5px;text-decoration:none;transition:all .15s ease}
+a.badge-kaggle:hover{background:#fff;transform:translateY(-1px)}
+a.badge-care{background:rgba(212,166,42,0.2);border:1px solid var(--gold);color:var(--gold)!important;font-family:var(--mono);font-size:0.72rem;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:0.08em;text-decoration:none;transition:background .15s ease}
+a.badge-care:hover{background:rgba(212,166,42,0.35)}
+
+.pb-title-area{position:relative;z-index:2}
+.pb-eyebrow{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.pb-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:8px}
+.pb-title em{font-style:normal;color:var(--gold)}
+.pb-sub{font-size:1.05rem;color:#d9d8f3;max-width:65ch;line-height:1.4}
+
+.pb-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:28px 36px;background:rgba(255,255,255,0.02)}
+@media (max-width:640px){.pb-grid{padding:18px;grid-template-columns:1fr}.pb-header{padding:22px 18px}}
+.pb-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;min-height:180px}
+.pb-card-top{display:flex;flex-direction:column;gap:6px}
+.pb-card-tag{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.pb-card h3{font-family:var(--display);font-size:1.15rem;color:#fff;margin:0}
+.pb-card p{font-size:0.9rem;color:#c9c8ec;margin:0;line-height:1.45}
+.pb-inline-link{color:#20beff;text-decoration:underline;text-underline-offset:2px;font-weight:600}
+.pb-inline-link:hover{color:#72d6ff}
+.pb-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+.pb-m-box{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);padding:6px 8px;border-radius:6px;text-align:center}
+.pb-m-val{font-family:var(--mono);font-size:0.85rem;font-weight:700;color:var(--gold);display:block}
+.pb-m-lbl{font-size:0.68rem;color:#aeadd6;display:block}
+
+.pb-footer{padding:18px 36px;background:var(--indigo-900);border-top:1px solid rgba(255,255,255,0.15);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+@media (max-width:768px){.pb-footer{padding:16px 20px}}
+.pb-footer-left{display:flex;flex-direction:column;gap:6px;font-size:0.88rem;color:#d9d8f3}
+.pb-footer-brand{font-size:0.88rem}
+.pb-footer-brand b{color:#fff}
+.pb-footer-link{color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold)}
+.pb-footer-link:hover{color:#fae48c}
+.pb-footer-links{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:0.8rem;flex-wrap:wrap}
+.pb-link-label{color:#8f8be0;text-transform:uppercase;font-size:0.72rem;letter-spacing:0.06em}
+.pb-hyperlink{color:#20beff;text-decoration:none;display:inline-flex;align-items:center;gap:4px;font-weight:600;border-bottom:1px solid rgba(32,190,255,0.4);padding-bottom:1px;transition:all .15s ease}
+.pb-hyperlink:hover{color:#fff;border-bottom-color:#fff}
+.pb-pipe{color:rgba(255,255,255,0.25)}
+.pb-btn-print{background:var(--gold);color:var(--indigo-900);border:none;font-family:var(--mono);font-size:0.85rem;font-weight:700;padding:10px 18px;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:all .2s ease}
+.pb-btn-print:hover{background:#fae48c;transform:translateY(-1px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Print Styles: Force full background color & graphic rendering */
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  @page {
+    size: portrait;
+    margin: 4mm;
+  }
+
+  /* Isolated poster print mode */
+  body.printing-poster {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+    background: #0d0b28 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  body.printing-poster > header,
+  body.printing-poster > footer,
+  body.printing-poster main > section:not(#poster),
+  body.printing-poster main > .hero {
+    display: none !important;
+  }
+  body.printing-poster #poster {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #0d0b28 !important;
+    border: none !important;
+    width: 100% !important;
+    height: calc(100vh - 8mm) !important;
+    max-height: calc(100vh - 8mm) !important;
+    overflow: hidden !important;
+    page-break-inside: avoid !important;
+  }
+  body.printing-poster #poster .sec-head {
+    display: none !important;
+  }
+  body.printing-poster #poster .wrap {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  body.printing-poster .poster-board {
+    border-radius: 6px !important;
+    border: 3px solid #d4a62a !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    overflow: hidden !important;
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-inside: avoid !important;
+  }
+  body.printing-poster .pb-header {
+    padding: 20px 28px 14px !important;
+    flex-shrink: 0 !important;
+  }
+  body.printing-poster .pb-topbar {
+    margin-bottom: 10px !important;
+    padding-bottom: 8px !important;
+  }
+  body.printing-poster .pb-title {
+    font-size: 2.1rem !important;
+    margin-bottom: 4px !important;
+  }
+  body.printing-poster .pb-sub {
+    font-size: 0.92rem !important;
+    line-height: 1.35 !important;
+  }
+  body.printing-poster .pb-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    padding: 12px 28px !important;
+    flex: 1 !important;
+  }
+  body.printing-poster .pb-card {
+    min-height: 0 !important;
+    padding: 12px 16px !important;
+    gap: 6px !important;
+    justify-content: space-between !important;
+  }
+  body.printing-poster .pb-card-top {
+    gap: 4px !important;
+  }
+  body.printing-poster .pb-card h3 {
+    font-size: 1.05rem !important;
+  }
+  body.printing-poster .pb-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.35 !important;
+  }
+  body.printing-poster .pb-metrics {
+    gap: 4px !important;
+    margin-top: 4px !important;
+  }
+  body.printing-poster .pb-m-box {
+    padding: 4px 4px !important;
+  }
+  body.printing-poster .pb-m-val {
+    font-size: 0.8rem !important;
+  }
+  body.printing-poster .pb-m-lbl {
+    font-size: 0.62rem !important;
+  }
+  body.printing-poster .pb-footer {
+    padding: 12px 28px !important;
+    flex-shrink: 0 !important;
+  }
+  body.printing-poster .pb-footer-brand {
+    font-size: 0.82rem !important;
+  }
+  body.printing-poster .pb-footer-links {
+    font-size: 0.76rem !important;
+    gap: 8px !important;
+  }
+  body.printing-poster .pb-actions {
+    display: none !important;
+  }
+  body.printing-poster a.badge-kaggle,
+  body.printing-poster a.badge-care,
+  body.printing-poster .pb-hyperlink,
+  body.printing-poster .pb-inline-link,
+  body.printing-poster .pb-footer-link,
+  body.printing-poster .pb-inst-link {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    pointer-events: auto !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -164,6 +367,7 @@ footer b{color:#fff}
     <a class="brand" href="index.html">CARE <span>2026</span></a>
     <nav aria-label="Primary">
       <ul>
+        <li><a class="l" href="#poster">Poster</a></li>
         <li><a class="l" href="index.html">Home</a></li>
         <li><a class="l" href="program.html">Program</a></li>
         <li><a class="l" href="speakers.html">Speakers</a></li>
@@ -171,6 +375,7 @@ footer b{color:#fff}
         <li><a class="l" href="forum.html">Forum</a></li>
         <li><a class="l" href="venue.html">Venue</a></li>
         <li><a class="l" href="register.html">Register</a></li>
+        <li><a class="nav-kaggle" href="https://www.kaggle.com/competitions" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.246l-5.18-6.586-1.781 1.711v4.834c0 .164-.047.281-.141.352-.094.07-.223.105-.387.105H4.516c-.164 0-.293-.035-.387-.105-.094-.07-.141-.188-.141-.352V.48c0-.164.047-.281.141-.352C4.223.059 4.352.023 4.516.023h2.906c.164 0 .293.035.387.105.094.07.141.188.141.352v13.688l6.703-6.984c.141-.141.305-.211.492-.211h3.328c.141 0 .234.047.281.141.047.117.023.234-.07.352l-5.695 5.766 6.094 10.312c.094.141.105.246.07.352z"/></svg> Kaggle ↗</a></li>
       </ul>
     </nav>
   </div>
@@ -202,6 +407,15 @@ footer b{color:#fff}
       <span class="chip"><b>Output</b> one number, or <b>na</b></span>
       <span class="chip"><b>Models</b> open weights, up to 7B</span>
       <span class="chip"><b>Network</b> none</span>
+    </div>
+    <div class="hero-actions">
+      <a href="https://www.kaggle.com/competitions" target="_blank" rel="noopener noreferrer" class="btn-kaggle">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.246l-5.18-6.586-1.781 1.711v4.834c0 .164-.047.281-.141.352-.094.07-.223.105-.387.105H4.516c-.164 0-.293-.035-.387-.105-.094-.07-.141-.188-.141-.352V.48c0-.164.047-.281.141-.352C4.223.059 4.352.023 4.516.023h2.906c.164 0 .293.035.387.105.094.07.141.188.141.352v13.688l6.703-6.984c.141-.141.305-.211.492-.211h3.328c.141 0 .234.047.281.141.047.117.023.234-.07.352l-5.695 5.766 6.094 10.312c.094.141.105.246.07.352z"/></svg>
+        Join Challenge on Kaggle ↗
+      </a>
+      <a href="#poster" class="btn-poster">
+        View Official Poster ↓
+      </a>
     </div>
     <div class="stats">
       <!-- <div><strong>4.2M</strong><span>residents in MetroCore</span></div> -->
@@ -239,6 +453,142 @@ footer b{color:#fff}
         <rect x="100" y="258" width="160" height="34" rx="17" fill="#d4a62a"/>
         <text x="180" y="280" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="600" font-size="14" fill="#14123a">2450.75</text>
       </svg>
+    </div>
+  </div>
+</section>
+
+<!-- OFFICIAL CHALLENGE POSTER -->
+<section id="poster" class="poster-section">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:20px">
+      <div class="eyebrow" style="color:var(--gold)">OFFICIAL CHALLENGE POSTER</div>
+      <h2 style="color:#fff">MetroCore Decision Desk at a Glance</h2>
+    </div>
+
+    <div class="poster-board">
+      <!-- Poster Header -->
+      <div class="pb-header">
+        <svg class="bg" aria-hidden="true" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid slice">
+          <g stroke="#5b57c9" stroke-width="1" fill="none" opacity=".5">
+            <path d="M0 60H1200M0 140H1200M0 220H1200"/>
+            <path d="M120 0V320M360 0V320M600 0V320M840 0V320M1080 0V320"/>
+          </g>
+          <g stroke="#d4a62a" stroke-width="2" fill="none" opacity=".7">
+            <path d="M360 60H600V140H840V220"/>
+          </g>
+          <g fill="#d4a62a">
+            <circle cx="360" cy="60" r="5"/><circle cx="600" cy="60" r="5"/><circle cx="600" cy="140" r="5"/><circle cx="840" cy="140" r="5"/><circle cx="840" cy="220" r="5"/>
+          </g>
+        </svg>
+
+        <div class="pb-topbar">
+          <div class="pb-inst">
+            <a href="https://msdsai.iitr.ac.in" target="_blank" rel="noopener" class="pb-inst-link">
+              <strong>Mehta Family School of Data Science &amp; Artificial Intelligence</strong>
+              Indian Institute of Technology Roorkee
+            </a>
+          </div>
+          <div class="pb-badges">
+            <a href="https://www.kaggle.com/competitions" target="_blank" rel="noopener" class="badge-kaggle" title="Join Challenge on Kaggle">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.246l-5.18-6.586-1.781 1.711v4.834c0 .164-.047.281-.141.352-.094.07-.223.105-.387.105H4.516c-.164 0-.293-.035-.387-.105-.094-.07-.141-.188-.141-.352V.48c0-.164.047-.281.141-.352C4.223.059 4.352.023 4.516.023h2.906c.164 0 .293.035.387.105.094.07.141.188.141.352v13.688l6.703-6.984c.141-.141.305-.211.492-.211h3.328c.141 0 .234.047.281.141.047.117.023.234-.07.352l-5.695 5.766 6.094 10.312c.094.141.105.246.07.352z"/></svg>
+              KAGGLE CHALLENGE ↗
+            </a>
+            <a href="https://care2026.iitr.ac.in" target="_blank" rel="noopener" class="badge-care" title="CARE 2026 Conference">CARE 2026 TRACK 01 ↗</a>
+          </div>
+        </div>
+
+        <div class="pb-title-area">
+          <div class="pb-eyebrow">METROPOLITAN OPTIMIZATION</div>
+          <h2 class="pb-title">MetroCore <em>Decision Desk</em></h2>
+          <p class="pb-sub">Can an offline LLM/VLM pipeline parse messy municipal memos and multimodal images to compute the exact global mathematical optimum?</p>
+        </div>
+      </div>
+
+      <!-- 4 Quick-Insight Poster Quadrants -->
+      <div class="pb-grid">
+        <!-- Q1 -->
+        <div class="pb-card">
+          <div class="pb-card-top">
+            <span class="pb-card-tag">01 // The Core Task</span>
+            <h3>Real-World Municipal Problems</h3>
+            <p>City department heads present 60+ optimization problems in human prose &mdash; transit fleet dispatch, hourly energy commitment, and sensor coverage networks.</p>
+          </div>
+          <div class="pb-metrics">
+            <div class="pb-m-box"><span class="pb-m-val">4.2M</span><span class="pb-m-lbl">Citizens</span></div>
+            <div class="pb-m-box"><span class="pb-m-val">60+</span><span class="pb-m-lbl">Families</span></div>
+            <div class="pb-m-box"><span class="pb-m-val">10–100s</span><span class="pb-m-lbl">Decisions</span></div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="pb-card">
+          <div class="pb-card-top">
+            <span class="pb-card-tag">02 // Multimodal Intake</span>
+            <h3>Text Memos + Essential Images</h3>
+            <p>Crucial matrices, demand charts, and river topologies exist <em>only</em> inside images. Pipelines must navigate mixed units (kg/tons, lakh/crore) and extraneous numbers.</p>
+          </div>
+          <div class="pb-metrics">
+            <div class="pb-m-box"><span class="pb-m-val">Tables</span><span class="pb-m-lbl">Distance</span></div>
+            <div class="pb-m-box"><span class="pb-m-val">Charts</span><span class="pb-m-lbl">Demand</span></div>
+            <div class="pb-m-box"><span class="pb-m-val">Maps</span><span class="pb-m-lbl">Topology</span></div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="pb-card">
+          <div class="pb-card-top">
+            <span class="pb-card-tag">03 // Kaggle Environment</span>
+            <h3>Strict Offline Constraints</h3>
+            <p>Notebook submission on <a href="https://www.kaggle.com/competitions" target="_blank" rel="noopener" class="pb-inline-link">https://kaggle.com</a>. Zero internet access. Open-weight models up to 7B parameters. Output is a clean <code>submission.csv</code> with <code>problem_id,answer</code>.</p>
+          </div>
+          <div class="pb-metrics">
+            <div class="pb-m-box"><span class="pb-m-val">None</span><span class="pb-m-lbl">Network</span></div>
+            <div class="pb-m-box"><span class="pb-m-val">&le; 7B</span><span class="pb-m-lbl">Model Size</span></div>
+            <div class="pb-m-box"><span class="pb-m-val">Offline</span><span class="pb-m-lbl">Kaggle GPU</span></div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="pb-card">
+          <div class="pb-card-top">
+            <span class="pb-card-tag">04 // High-Stakes Scoring</span>
+            <h3>Severe Penalty for Guessing</h3>
+            <p>Accuracy is rewarded, but guessing is penalized. Predicting a number on an infeasible case (or <code>na</code> on a feasible case) costs <strong>−0.5 points</strong>.</p>
+          </div>
+          <div class="pb-metrics">
+            <div class="pb-m-box"><span class="pb-m-val" style="color:var(--good)">+1.0</span><span class="pb-m-lbl">&le; 1% / na</span></div>
+            <div class="pb-m-box"><span class="pb-m-val" style="color:var(--good)">+0.5</span><span class="pb-m-lbl">&le; 5% close</span></div>
+            <div class="pb-m-box"><span class="pb-m-val" style="color:var(--bad)">−0.5</span><span class="pb-m-lbl">False guess</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Poster Footer -->
+      <div class="pb-footer">
+        <div class="pb-footer-left">
+          <div class="pb-footer-brand">
+            Official Challenge for <a href="index.html" class="pb-footer-link">CARE 2026</a> &middot; <a href="https://msdsai.iitr.ac.in" target="_blank" rel="noopener" class="pb-footer-link">Mehta Family School, IIT Roorkee</a>
+          </div>
+          <div class="pb-footer-links">
+            <span class="pb-link-label">Competition Link:</span>
+            <a href="https://www.kaggle.com/competitions" target="_blank" rel="noopener" class="pb-hyperlink" title="Hover or click to visit Kaggle">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.246l-5.18-6.586-1.781 1.711v4.834c0 .164-.047.281-.141.352-.094.07-.223.105-.387.105H4.516c-.164 0-.293-.035-.387-.105-.094-.07-.141-.188-.141-.352V.48c0-.164.047-.281.141-.352C4.223.059 4.352.023 4.516.023h2.906c.164 0 .293.035.387.105.094.07.141.188.141.352v13.688l6.703-6.984c.141-.141.305-.211.492-.211h3.328c.141 0 .234.047.281.141.047.117.023.234-.07.352l-5.695 5.766 6.094 10.312c.094.141.105.246.07.352z"/></svg>
+              kaggle.com/competitions ↗
+            </a>
+            <span class="pb-pipe">&bull;</span>
+            <span class="pb-link-label">Track Details:</span>
+            <a href="poster.html" class="pb-hyperlink" title="Hover or click to view Standalone Poster">
+              care2026.iitr.ac.in/poster ↗
+            </a>
+          </div>
+        </div>
+        <div class="pb-actions">
+          <button onclick="printPosterOnly()" class="pb-btn-print">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print Poster (A2/A3)
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -450,6 +800,10 @@ MC-003,<span class="na">na</span></pre>
       <div class="fact"><h3>Models</h3><p>Open-weight models of up to 7B parameters. Multiple models may run in sequence. Quantization and fine-tuning are permitted on any data participants have the right to use.</p></div>
       <div class="fact"><h3>Libraries</h3><p><code>ENVIRONMENT.md</code> lists every preinstalled package, and all teams receive the same environment. Additional open-source packages may be bundled. Commercial software and anything requiring a license server are prohibited.</p></div>
       <div class="fact"><h3>Output</h3><p>Your notebook writes <code>submission.csv</code> with two columns: <code>problem_id</code> and <code>answer</code>.</p></div>
+      <div class="fact">
+        <h3>Kaggle Notebook Platform</h3>
+        <p>This competition is hosted on Kaggle. Teams submit notebooks for automated evaluation in an air-gapped runtime with identical preinstalled libraries.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -496,5 +850,40 @@ MC-003,<span class="na">na</span></pre>
     <span>Mehta Family School of Data Science and Artificial Intelligence, IIT Roorkee</span>
   </div>
 </footer>
+
+<script>
+let origDocTitle = document.title;
+function printPosterOnly() {
+  origDocTitle = document.title;
+  document.title = 'care_poster';
+  document.body.classList.add('printing-poster');
+  window.print();
+}
+window.addEventListener('afterprint', () => {
+  document.body.classList.remove('printing-poster');
+  document.title = origDocTitle;
+});
+
+// Immediate Hover-to-Navigate functionality
+(function() {
+  const hoverLinks = document.querySelectorAll(
+    '.pb-hyperlink, a.badge-kaggle, a.badge-care, .pb-inline-link, .pb-footer-link, .pb-inst-link'
+  );
+  hoverLinks.forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      const href = this.getAttribute('href');
+      if (!href || href === '#' || href.startsWith('javascript:')) return;
+      if (this.target === '_blank' || href.startsWith('http')) {
+        const win = window.open(href, '_blank');
+        if (!win || win.closed || typeof win.closed === 'undefined') {
+          window.location.href = href;
+        }
+      } else {
+        window.location.href = href;
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>

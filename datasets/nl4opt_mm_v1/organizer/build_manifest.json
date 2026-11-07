@@ -1,0 +1,27 @@
+{
+  "version": "nl4opt-mm-v1",
+  "source_file": "nl4opt_test.json",
+  "source_sha256": "8435dc2ac1561f90a8e4a184082b5e366ed773cff49e84d6b284b25db7f2a547",
+  "seed": 20261107,
+  "selection_method": "uniform random sample without replacement",
+  "id_shuffle_seed": 20261108,
+  "total": 245,
+  "multimodal": 100,
+  "text_only": 145,
+  "source_na_mappings": {
+    "No Best Solution": "na",
+    "-99999.0": "na"
+  },
+  "image_numeric": 94,
+  "image_na": 6,
+  "text_numeric": 131,
+  "text_na": 14,
+  "pillow_version": "11.3.0",
+  "font_sha256": {
+    "DejaVuSans.ttf": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+    "DejaVuSans-Bold.ttf": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895"
+  },
+  "source_labels_independently_certified": false,
+  "public_examples_reserved": false,
+  "leaderboard_split_assigned": false
+}

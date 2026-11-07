@@ -65,9 +65,14 @@ Let A be your answer and A\* be the reference optimal value.
 | Wrong number on an infeasible problem (should be `na`) | **−0.5** |
 | `na` on a feasible problem | **−0.5** |
 | Correct `na` on an infeasible problem | **+1** |
-| Missing answer or crash | **0** |
+| Missing/blank answer, invalid output, or a caught per-problem error | **0** |
 
 Final score = mean of per-problem scores across the evaluation set.
+
+`na` means **infeasible**, not "unknown" or "could not solve". Leave an answer
+blank to abstain. Numeric answers must be finite. Duplicate or unknown problem
+IDs and malformed CSV structure are rejected. An unbounded objective is distinct
+from infeasibility and is outside this answer contract.
 
 ## 6. Runtime and environment
 
@@ -76,7 +81,7 @@ Your notebook reads problems and writes `submission.csv`.
 | Limit | Value |
 | :-- | :-- |
 | Network | None. |
-| Crash | Problems answered before a crash keep their scores. Unanswered problems score 0. |
+| Per-problem error | The provided runner leaves that answer blank and continues; the blank scores 0. A fatal notebook failure may invalidate the entire platform submission. |
 
 **Models.** Open-weight models of up to 7B parameters may be used. Multiple models may be run in sequence. Quantization and fine-tuning are permitted on any data participants have the right to use.
 

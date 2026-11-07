@@ -1,0 +1,45 @@
+{
+  "example_seed": 20261109,
+  "split_seed": 20261110,
+  "examples": [
+    {
+      "example_id": "EX-001",
+      "original_id": "MM-0059",
+      "source_row_1based": 74,
+      "modality": "image"
+    },
+    {
+      "example_id": "EX-002",
+      "original_id": "MM-0016",
+      "source_row_1based": 187,
+      "modality": "image"
+    },
+    {
+      "example_id": "EX-003",
+      "original_id": "MM-0219",
+      "source_row_1based": 223,
+      "modality": "text"
+    },
+    {
+      "example_id": "EX-004",
+      "original_id": "MM-0126",
+      "source_row_1based": 184,
+      "modality": "text"
+    },
+    {
+      "example_id": "EX-005",
+      "original_id": "MM-0060",
+      "source_row_1based": 139,
+      "modality": "text"
+    }
+  ],
+  "source_total": 245,
+  "hidden_total": 240,
+  "hidden_image": 98,
+  "hidden_text": 142,
+  "leaderboard_public": 72,
+  "leaderboard_private": 168,
+  "leaderboard_split_status": "proposed 30/70; confirm before launch",
+  "kaggle_deployed": false,
+  "hosted_validation_complete": false
+}

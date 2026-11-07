@@ -1,0 +1,27 @@
+[
+  {
+    "problem_id": "EX-001",
+    "question": "Mr. Roberts want to invest in the telecom and healthcare industries. If investments in telecom earn 3% and investments in healthcare earn 1%, how much should Mr. Roberts invest in each to maximize profit?\n\nThe attached data sheet contains additional specifications and requirements. Use every statement in that sheet together with the information above. Return only the optimal objective value, or na if the problem is infeasible.",
+    "image_path": "images/ex-001.png"
+  },
+  {
+    "problem_id": "EX-002",
+    "question": "A mine sends ore to the surface in small and large wagons. If 2000 units of ore need to taken to the surface, minimize the total number of wagons needed.\n\nThe attached data sheet contains additional specifications and requirements. Use every statement in that sheet together with the information above. Return only the optimal objective value, or na if the problem is infeasible.",
+    "image_path": "images/ex-002.png"
+  },
+  {
+    "problem_id": "EX-003",
+    "question": "There is 1000 mg of gold available that is needed to make long and short cables. Long cables require 10 mg of gold while short cables require 7 mg of gold. Because of their compact size, at least 5 times the number of short cables are needed than the long cables. In addition, there needs to be at least 10 long cables made. If each long cable sold results in a $12 profit and each short cable sold results in a $5 profit, how many of each type of cable should be made to maximize profit?",
+    "image_path": null
+  },
+  {
+    "problem_id": "EX-004",
+    "question": "A cruise company can either have two types of trips, a large cruise ship or a small cruise ship. A large cruise ship trip can carry 2000 customers and produces 20 units of pollution. A small cruise ship trip can carry 800 customers and produces 15 units of pollution. There can be at most 7 large cruise ship trips and at least 40% of the total trips must be made by small cruise ships. If the cruise company aims to transport at least 20000 customers, how many of each size of cruise ships should the company use to minimize the total amount of pollution produced?",
+    "image_path": null
+  },
+  {
+    "problem_id": "EX-005",
+    "question": "A woman on a diet needs to eat two types of meal preps, a smoothie and a protein bar. Each smoothie contains 2 units of protein and 300 calories. Each protein bar contains 7 units of protein and 250 calories. The woman must eat 2 times more protein bars than smoothies. If the woman can consume at most 2000 calories, how many of each should she eat or drink to maximize her protein intake?",
+    "image_path": null
+  }
+]

@@ -1,39 +1,46 @@
 """
-MetroCore Decision Desk — Organizer Evaluation Script (v2)
+MetroCore Decision Desk — Organizer Evaluation Script (v3)
 ==========================================================
 NOT distributed to participants. Completely hidden pipeline.
 
-Loads the hidden test set, imports the participant's solve() function,
-runs it on every problem, scores, and reports.
+Scores a submission against the organizer-only reference file. Never executes
+participant code. Notebook execution belongs in a separate runtime that has
+input questions and images, but no reference answers or scorer access.
 
 Usage:
-    python evaluator.py --notebook participant_notebook.ipynb --test-set hidden_test_set.json
     python evaluator.py --submission submission.csv --test-set hidden_test_set.json
-
-Modes:
-  1. --notebook: Extracts solve() from participant notebook, runs it, scores.
-  2. --submission: Scores an existing submission.csv directly.
 """
 
 import argparse
 import json
 import csv
 import math
-import sys
-import os
-import time
-from pathlib import Path
+from decimal import Decimal
 
 
-def parse_answer(raw: str) -> float | str:
-    """Parse an answer string. Returns float or 'na'."""
-    raw = raw.strip().lower()
-    if raw in ("na", "n/a", "no best solution", "infeasible", "none", "-99999.0"):
+def parse_answer(raw) -> float | str | None:
+    """Parse the competition format; None/blank means unanswered.
+
+    Only literal 'na' denotes infeasibility. Source-dataset sentinel conversion
+    is a data preparation step, never part of participant answer parsing.
+    Invalid and nonfinite values raise ValueError.
+    """
+    if raw is None:
+        return None
+    if isinstance(raw, bool):
+        raise ValueError("Boolean answers are not numbers")
+    raw = str(raw).strip()
+    if not raw:
+        return None
+    if raw.lower() == "na":
         return "na"
     try:
-        return float(raw)
-    except ValueError:
-        return "na"
+        value = float(raw)
+    except (ValueError, OverflowError) as exc:
+        raise ValueError("Answer must be a finite number, 'na', or blank") from exc
+    if not math.isfinite(value):
+        raise ValueError("Answer must be finite")
+    return value
 
 
 def score_one(submitted, reference) -> tuple[float, str]:
@@ -51,8 +58,13 @@ def score_one(submitted, reference) -> tuple[float, str]:
       - Correct na on infeasible                    →  +1
       - Missing / crash                             →   0
     """
-    ref = parse_answer(str(reference))
-    sub = parse_answer(str(submitted)) if submitted is not None else None
+    ref = parse_answer(reference)
+    if ref is None:
+        raise ValueError("Reference answer cannot be missing")
+    try:
+        sub = parse_answer(submitted)
+    except ValueError:
+        return 0.0, "invalid"
 
     # Missing answer
     if sub is None:
@@ -69,15 +81,16 @@ def score_one(submitted, reference) -> tuple[float, str]:
         return -0.5, "na_on_feasible"
 
     # Both are numbers
-    ref_val = float(ref)
-    sub_val = float(sub)
+    # Decimal arithmetic on parsed float strings avoids rejecting ordinary
+    # exact boundaries such as 1.01 vs 1 due to binary subtraction error.
+    ref_val = Decimal(str(ref))
+    sub_val = Decimal(str(sub))
+    denom = max(Decimal(1), abs(ref_val))
+    error = abs(sub_val - ref_val)
 
-    denom = max(1.0, abs(ref_val))
-    rel_error = abs(sub_val - ref_val) / denom
-
-    if rel_error <= 0.01:
+    if error <= Decimal("0.01") * denom:
         return 1.0, "correct"
-    elif rel_error <= 0.05:
+    elif error <= Decimal("0.05") * denom:
         return 0.5, "close"
     else:
         return 0.0, "wrong"
@@ -86,45 +99,55 @@ def score_one(submitted, reference) -> tuple[float, str]:
 def load_test_set(path: str) -> list[dict]:
     """Load hidden test set."""
     with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        problems = json.load(f)
+    validate_test_set(problems)
+    return problems
+
+
+def validate_test_set(test_set: list[dict]) -> None:
+    """Reject invalid answer keys rather than silently scoring against them."""
+    if not isinstance(test_set, list) or not test_set:
+        raise ValueError("Test set must be a nonempty JSON array")
+    ids = set()
+    for problem in test_set:
+        if not isinstance(problem, dict):
+            raise ValueError("Each test problem must be an object")
+        pid = problem.get("problem_id")
+        if not isinstance(pid, str) or not pid.strip() or pid != pid.strip():
+            raise ValueError("Problem IDs must be nonempty strings without surrounding whitespace")
+        if pid in ids:
+            raise ValueError(f"Duplicate reference problem ID: {pid}")
+        ids.add(pid)
+        if "reference_answer" not in problem or parse_answer(problem["reference_answer"]) is None:
+            raise ValueError(f"Missing reference answer: {pid}")
 
 
 def load_submission(path: str) -> dict:
     """Load submission CSV. Returns {problem_id: answer}."""
     results = {}
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
-        for row in reader:
+        if reader.fieldnames != ["problem_id", "answer"]:
+            raise ValueError("CSV header must be exactly: problem_id,answer")
+        for line, row in enumerate(reader, start=2):
+            if None in row or any(value is None for value in row.values()):
+                raise ValueError(f"CSV row {line} must contain exactly two fields; use an empty answer for missing")
             pid = row["problem_id"].strip()
+            if not pid:
+                raise ValueError(f"Empty problem ID on CSV row {line}")
+            if pid in results:
+                raise ValueError(f"Duplicate submission problem ID: {pid}")
             answer = row["answer"].strip()
             results[pid] = answer
     return results
 
 
-def run_solve_on_test_set(solve_fn, test_set: list[dict]) -> dict:
-    """Run participant's solve() on every problem. Returns {problem_id: answer}."""
-    submission = {}
-    for i, problem in enumerate(test_set):
-        pid = problem["problem_id"]
-        question = problem["question"]
-        image_path = problem.get("image_path", None)
-
-        start = time.time()
-        try:
-            answer = solve_fn(question, image_path)
-            elapsed = time.time() - start
-            submission[pid] = str(answer)
-            print(f"  [{i+1:>3}/{len(test_set)}] {pid}  {elapsed:6.2f}s  OK")
-        except Exception as e:
-            elapsed = time.time() - start
-            submission[pid] = ""
-            print(f"  [{i+1:>3}/{len(test_set)}] {pid}  {elapsed:6.2f}s  ERROR: {e}")
-
-    return submission
-
-
 def evaluate(submission: dict, test_set: list[dict]) -> dict:
     """Run full evaluation. Returns detailed results."""
+    validate_test_set(test_set)
+    unknown = set(submission) - {problem["problem_id"] for problem in test_set}
+    if unknown:
+        raise ValueError("Submission contains unknown problem IDs")
     results = []
     for problem in test_set:
         pid = problem["problem_id"]
@@ -186,14 +209,10 @@ def main():
     parser = argparse.ArgumentParser(
         description="MetroCore Decision Desk — Organizer Evaluation"
     )
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument(
+    parser.add_argument(
         "--submission",
+        required=True,
         help="Path to a pre-built submission.csv"
-    )
-    group.add_argument(
-        "--notebook",
-        help="Path to participant's .ipynb (extracts and runs solve())"
     )
     parser.add_argument(
         "--test-set", required=True,
@@ -205,38 +224,13 @@ def main():
     )
     args = parser.parse_args()
 
-    test_set = load_test_set(args.test_set)
-    print(f"Loaded {len(test_set)} problems from hidden test set.\n")
-
-    if args.submission:
+    try:
+        test_set = load_test_set(args.test_set)
         submission = load_submission(args.submission)
-    else:
-        # Extract solve() from notebook
-        print("Extracting solve() from notebook...")
-        nb_path = Path(args.notebook)
-        with open(nb_path, "r", encoding="utf-8") as f:
-            nb = json.load(f)
-
-        # Collect all code cells
-        code_cells = [
-            "".join(cell["source"])
-            for cell in nb["cells"]
-            if cell["cell_type"] == "code"
-        ]
-        full_code = "\n\n".join(code_cells)
-
-        # Execute in isolated namespace
-        ns = {}
-        exec(full_code, ns)
-
-        if "solve" not in ns:
-            print("ERROR: No solve() function found in notebook.", file=sys.stderr)
-            sys.exit(1)
-
-        print(f"Running solve() on {len(test_set)} problems...\n")
-        submission = run_solve_on_test_set(ns["solve"], test_set)
-
-    result = evaluate(submission, test_set)
+        result = evaluate(submission, test_set)
+    except (ValueError, OSError, csv.Error) as exc:
+        parser.error(str(exc))
+    print(f"Loaded {len(test_set)} problems from hidden test set.\n")
     print_report(result)
 
     if args.output_json:

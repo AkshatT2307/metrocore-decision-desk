@@ -1,0 +1,24 @@
+problem_id,source_row_1based,source_answer,reference_answer,review_reason,label_changed
+MM-0004,17,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0018,205,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0022,72,-99999.0,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0026,212,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0040,151,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0047,179,18.0,18.0,11 motion + 6 manual machines meet requirements with 17 machines; source is 18.,false
+MM-0058,117,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0079,37,No Best Solution,na,Feasible witness: 27 small + 9 large bins use 99 workers; source says No Best Solution. Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0088,16,12860.0,12860.0,"Integer vehicle shifts: 10 ambulance + 8 van shifts cost 12600, below source 12860.",false
+MM-0109,112,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0117,79,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0120,50,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0122,189,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0124,153,-99999.0,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0140,49,-99999.0,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0154,29,-99999.0,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0158,33,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0163,197,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0183,164,95.0,95.0,Integer shifts: 54 cart + 3 hand shifts give 4035 interactions and 330 refills; source is 95.,false
+MM-0185,163,-99999.0,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0203,198,-99999.0,na,Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0213,215,No Best Solution,na,Feasible witness: 7 large + 9 small planes carry 300 cars with fewer large planes. Legacy source marker mapped to na; infeasibility not independently certified.,false
+MM-0229,28,No Best Solution,na,Legacy source marker mapped to na; infeasibility not independently certified.,false

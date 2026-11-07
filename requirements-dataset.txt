@@ -1,0 +1,2 @@
+# Dataset rendering only; participant inference does not need this dependency.
+Pillow==11.3.0

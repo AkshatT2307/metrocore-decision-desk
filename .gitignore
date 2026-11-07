@@ -1,0 +1,22 @@
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+# OS download metadata
+*:Zone.Identifier
+.DS_Store
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+kaggle.json
+.aws/
+.codex/
+*.pem
+*.key
+# Local execution output (release CSVs remain tracked)
+/submission.csv
+/organizer-results.json
