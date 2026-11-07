@@ -1,3 +1,5 @@
 # Preserve generated artifact bytes: organizer manifests contain SHA-256 hashes.
 datasets/** -text
 releases/** -text
+# CSV writers intentionally use CRLF; treat CR as part of the line ending.
+*.csv whitespace=cr-at-eol
